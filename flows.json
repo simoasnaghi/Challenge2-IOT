@@ -1,0 +1,423 @@
+[
+    {
+        "id": "b5d1af96.0416f8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "4c88cb87.fdd2bc",
+        "type": "csv",
+        "z": "b5d1af96.0416f8",
+        "name": "iot-feeds",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "code,field1,field2,field3,field4,field5,field6,field7",
+        "skip": "0",
+        "x": 460,
+        "y": 380,
+        "wires": [
+            [
+                "2f350f1d.0964e"
+            ]
+        ]
+    },
+    {
+        "id": "65fc7bb2.7091e4",
+        "type": "file in",
+        "z": "b5d1af96.0416f8",
+        "name": "iot-feeds.csv",
+        "filename": "/home/user/Desktop/iot-feeds.csv",
+        "format": "lines",
+        "chunk": false,
+        "sendError": false,
+        "x": 290,
+        "y": 380,
+        "wires": [
+            [
+                "4c88cb87.fdd2bc"
+            ]
+        ]
+    },
+    {
+        "id": "22fb0ec5.81b14a",
+        "type": "debug",
+        "z": "b5d1af96.0416f8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 430,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "2f350f1d.0964e",
+        "type": "switch",
+        "z": "b5d1af96.0416f8",
+        "name": "msg.code check",
+        "property": "payload.code",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "btwn",
+                "v": "0000",
+                "vt": "num",
+                "v2": "0001",
+                "v2t": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 620,
+        "y": 380,
+        "wires": [
+            [
+                "837396f9.bedfb"
+            ]
+        ]
+    },
+    {
+        "id": "837396f9.bedfb",
+        "type": "delay",
+        "z": "b5d1af96.0416f8",
+        "name": "2msgpermin",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "2",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "outputs": 1,
+        "x": 310,
+        "y": 480,
+        "wires": [
+            [
+                "22fb0ec5.81b14a",
+                "7ee7e24f.104a14"
+            ]
+        ]
+    },
+    {
+        "id": "d5f23295.c06fa8",
+        "type": "change",
+        "z": "b5d1af96.0416f8",
+        "name": "Field5 extractor",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.field5",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 960,
+        "y": 200,
+        "wires": [
+            [
+                "e101dca7.a422c8",
+                "435daa2e.5bc55c"
+            ]
+        ]
+    },
+    {
+        "id": "435daa2e.5bc55c",
+        "type": "ui_chart",
+        "z": "b5d1af96.0416f8",
+        "name": "",
+        "group": "a7b78862.47126",
+        "order": 0,
+        "width": "12",
+        "height": "12",
+        "label": "RSSI",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "auto",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": true,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "100",
+        "removeOlderPoints": "100",
+        "removeOlderUnit": "1",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "x": 1170,
+        "y": 320,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "e101dca7.a422c8",
+        "type": "debug",
+        "z": "b5d1af96.0416f8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 1190,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "1ba3f637.9c30b2",
+        "type": "delay",
+        "z": "b5d1af96.0416f8",
+        "name": "1msgpersec",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "outputs": 1,
+        "x": 910,
+        "y": 140,
+        "wires": [
+            [
+                "d5f23295.c06fa8"
+            ]
+        ]
+    },
+    {
+        "id": "7ee7e24f.104a14",
+        "type": "function",
+        "z": "b5d1af96.0416f8",
+        "name": "mqtt_msg_cook",
+        "func": "var CHANNEL_ID= \"1711416\";\nvar field1 = msg.payload.field1;\nvar field2 = msg.payload.field2;\nvar field5 = msg.payload.field5;\nmsg.topic= 'channels/'+CHANNEL_ID+'/publish';\nmsg.payload='field1='+field1+'&field2='+field2+'&field5='+field5+'&status=MQTTPUBLISH';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 540,
+        "y": 480,
+        "wires": [
+            [
+                "e38225a0.aab48",
+                "fd4b8300.13b4f"
+            ]
+        ]
+    },
+    {
+        "id": "72752831.f58d9",
+        "type": "function",
+        "z": "b5d1af96.0416f8",
+        "name": "graph cleaner",
+        "func": "msg.payload=[]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 640,
+        "y": 200,
+        "wires": [
+            [
+                "435daa2e.5bc55c"
+            ]
+        ]
+    },
+    {
+        "id": "fd4b8300.13b4f",
+        "type": "mqtt out",
+        "z": "b5d1af96.0416f8",
+        "name": "Thingspeak MQTT connection",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f1ddb974.73084",
+        "x": 870,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "e38225a0.aab48",
+        "type": "debug",
+        "z": "b5d1af96.0416f8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 870,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "29c3d0b9.718f78",
+        "type": "inject",
+        "z": "b5d1af96.0416f8",
+        "name": "MQTT Thingspeak timestamp",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 300,
+        "wires": [
+            [
+                "65fc7bb2.7091e4"
+            ]
+        ]
+    },
+    {
+        "id": "277a4740.8a9ef",
+        "type": "file in",
+        "z": "b5d1af96.0416f8",
+        "name": "iot-feeds.csv",
+        "filename": "/home/user/Desktop/iot-feeds.csv",
+        "format": "lines",
+        "chunk": false,
+        "sendError": false,
+        "x": 410,
+        "y": 120,
+        "wires": [
+            [
+                "2134d705.812928"
+            ]
+        ]
+    },
+    {
+        "id": "2134d705.812928",
+        "type": "csv",
+        "z": "b5d1af96.0416f8",
+        "name": "iot-feeds",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "code,field1,field2,field3,field4,field5,field6,field7",
+        "skip": "0",
+        "x": 560,
+        "y": 120,
+        "wires": [
+            [
+                "15423ea2.af7c71"
+            ]
+        ]
+    },
+    {
+        "id": "15423ea2.af7c71",
+        "type": "switch",
+        "z": "b5d1af96.0416f8",
+        "name": "msg.code check",
+        "property": "payload.code",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "btwn",
+                "v": "0000",
+                "vt": "num",
+                "v2": "0001",
+                "v2t": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 720,
+        "y": 120,
+        "wires": [
+            [
+                "1ba3f637.9c30b2"
+            ]
+        ]
+    },
+    {
+        "id": "137ad956.ca1b6f",
+        "type": "inject",
+        "z": "b5d1af96.0416f8",
+        "name": "RSSI graphic generator",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 200,
+        "wires": [
+            [
+                "277a4740.8a9ef",
+                "72752831.f58d9"
+            ]
+        ]
+    },
+    {
+        "id": "f1ddb974.73084",
+        "type": "mqtt-broker",
+        "name": "Thingspeak",
+        "broker": "mqtt3.thingspeak.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": "",
+        "credentials": {
+            "user": "",
+            "password": ""
+        }
+    }
+]
