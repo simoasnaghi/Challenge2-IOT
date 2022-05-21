@@ -5,6 +5,6 @@ Objective of the challenge: read data from a CSV by importing it into node-red, 
 
 ![1](https://user-images.githubusercontent.com/60111084/169482332-5d3394e9-e3f6-4cd5-a8df-d4c6a1df5872.png)
 
-For a precise explanetion please see the report: https://github.com/simoasnaghi/Challenge2-IOT/blob/main/report.pdf
+For a precise explanation please see the report: https://github.com/simoasnaghi/Challenge2-IOT/blob/main/report.pdf
 
 Teamspeak public link: https://thingspeak.com/channels/1711416
